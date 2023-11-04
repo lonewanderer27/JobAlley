@@ -35,6 +35,14 @@ class JBMainActivity : AppCompatActivity() {
         BtnView!!.setOnClickListener {
             Log.i("JobAlleyMainActivity", "BtnView clicked!")
 
+            // check if the records table is empty, if it is, don't view
+            if (!Conn!!.NotEmpty()) {
+                Log.i("ViewRecords", "No records to view")
+                Toast.makeText(this, "No records to view", Toast.LENGTH_LONG).show()
+                return@setOnClickListener
+            }
+
+            // go to the records activity
             val callRecords = Intent(this, Records::class.java)
             startActivity(callRecords)
         }
