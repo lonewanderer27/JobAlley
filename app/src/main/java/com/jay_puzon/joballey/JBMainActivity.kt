@@ -15,7 +15,8 @@ class JBMainActivity : AppCompatActivity() {
     private var BtnAdd: Button? = null
     private var BtnView: Button? = null
     private var BtnClear: Button? = null
-    private var Conn: SQLiteDB? = SQLiteDB(this)
+    private var Conn: JBSQLiteDB? =
+        JBSQLiteDB(this)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -43,7 +44,7 @@ class JBMainActivity : AppCompatActivity() {
             }
 
             // go to the records activity
-            val callRecords = Intent(this, Records::class.java)
+            val callRecords = Intent(this, JBRecords::class.java)
             startActivity(callRecords)
         }
 

@@ -14,7 +14,8 @@ class JBEditRecord : AppCompatActivity() {
     private var BtnUpdate: Button? = null
     private var BtnDelete: Button? = null
     private var BtnBack: Button? = null
-    private var Conn: SQLiteDB? = SQLiteDB(this)
+    private var Conn: JBSQLiteDB? =
+        JBSQLiteDB(this)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -22,10 +23,10 @@ class JBEditRecord : AppCompatActivity() {
 
         // retrieve the extra values
         val extras = intent.extras;
-        val id = extras!!.getInt(SQLiteDB.PROF_ID);
-        val fName = extras.getString(SQLiteDB.PROF_FNAME);
-        val mName = extras.getString(SQLiteDB.PROF_MNAME);
-        val lName = extras.getString(SQLiteDB.PROF_LNAME);
+        val id = extras!!.getInt(JBSQLiteDB.PROF_ID);
+        val fName = extras.getString(JBSQLiteDB.PROF_FNAME);
+        val mName = extras.getString(JBSQLiteDB.PROF_MNAME);
+        val lName = extras.getString(JBSQLiteDB.PROF_LNAME);
 
         // set the values to the fields
         val fNameField = findViewById<EditText>(R.id.fName);
@@ -85,7 +86,7 @@ class JBEditRecord : AppCompatActivity() {
             }
 
             // check if the new values conflict with existing record
-            if (Conn!!.RecordExists(names[0], names[1], names[2])) {
+            if (Conn!!.RecordExists(names[0], names[1], names[2], id)) {
                 Log.i("BtnUpdate", "Conflicts with existing record!");
                 Toast.makeText(this, "Conflicts with existing record!", Toast.LENGTH_LONG).show()
                 return@setOnClickListener;

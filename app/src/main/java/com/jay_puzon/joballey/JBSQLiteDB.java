@@ -10,7 +10,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 import androidx.annotation.Nullable;
 import java.util.ArrayList;
 
-public class SQLiteDB extends SQLiteOpenHelper {
+public class JBSQLiteDB extends SQLiteOpenHelper {
 
     public static final String DATABASE_NAME = "records.db";
     public static final String PROFILE = "profile", PROF_ID = "prof_id", PROF_FNAME = "prof_fname", PROF_MNAME = "prof_mname", PROF_LNAME = "prof_lname";
@@ -18,7 +18,7 @@ public class SQLiteDB extends SQLiteOpenHelper {
     Cursor rs;
     ArrayList<String> Items;
     ArrayList<Integer> ItemsId;
-    public SQLiteDB(@Nullable Context context) {
+    public JBSQLiteDB(@Nullable Context context) {
         super(context, DATABASE_NAME, null, 1);
     }
 
@@ -42,6 +42,16 @@ public class SQLiteDB extends SQLiteOpenHelper {
         SQLiteDatabase conn = this.getReadableDatabase();
         String[] Columns = {PROF_FNAME, PROF_MNAME, PROF_LNAME};
         String selection = PROF_FNAME + " = ? AND " + PROF_MNAME + " = ? AND " + PROF_LNAME + " = ?";
+        String[] selectionArgs = {fName, mName, lName};
+
+        rs = conn.query(PROFILE, Columns, selection, selectionArgs, null, null, null);
+        return rs.moveToFirst();
+    }
+
+    public boolean RecordExists(String fName, String mName, String lName, int ignoreRecordIndex) {
+        SQLiteDatabase conn = this.getReadableDatabase();
+        String[] Columns = {PROF_FNAME, PROF_MNAME, PROF_LNAME};
+        String selection = PROF_FNAME + " = ? AND " + PROF_MNAME + " = ? AND " + PROF_LNAME + " = ? AND " + PROF_ID + " != ?";;
         String[] selectionArgs = {fName, mName, lName};
 
         rs = conn.query(PROFILE, Columns, selection, selectionArgs, null, null, null);

@@ -11,13 +11,13 @@ import android.widget.Toast;
 import androidx.annotation.Nullable;
 import java.util.ArrayList;
 
-public class Records extends ListActivity {
-    SQLiteDB Conn;
+public class JBRecords extends ListActivity {
+    JBSQLiteDB Conn;
     ArrayList<String> ItemList;
 
 
     void refreshData () {
-        Conn = new SQLiteDB(this);
+        Conn = new JBSQLiteDB(this);
         ItemList = Conn.GetRecords();
 
         if (ItemList.size() > 0) {
@@ -50,10 +50,10 @@ public class Records extends ListActivity {
         Intent CallEdit = new Intent(".JobAlleyEditRecord");
 
         // Pass the data to the next activity
-        CallEdit.putExtra(SQLiteDB.PROF_ID, Conn.ItemsId.get(position));
-        CallEdit.putExtra(SQLiteDB.PROF_FNAME, recordData[0]);
-        CallEdit.putExtra(SQLiteDB.PROF_MNAME, recordData[1]);
-        CallEdit.putExtra(SQLiteDB.PROF_LNAME, recordData[2]);
+        CallEdit.putExtra(JBSQLiteDB.PROF_ID, Conn.ItemsId.get(position));
+        CallEdit.putExtra(JBSQLiteDB.PROF_FNAME, recordData[0]);
+        CallEdit.putExtra(JBSQLiteDB.PROF_MNAME, recordData[1]);
+        CallEdit.putExtra(JBSQLiteDB.PROF_LNAME, recordData[2]);
 
         // Call the next activity
         startActivity(CallEdit);
