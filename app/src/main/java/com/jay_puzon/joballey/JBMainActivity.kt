@@ -8,7 +8,7 @@ import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 
-class JobAlleyMainActivity : AppCompatActivity() {
+class JBMainActivity : AppCompatActivity() {
     private var FName: EditText? = null
     private var MName: EditText? = null
     private var LName: EditText? = null
@@ -19,7 +19,7 @@ class JobAlleyMainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.job_alley_activity_main)
+        setContentView(R.layout.jb_activity_main)
 
         FName = findViewById(R.id.fName)
         MName = findViewById(R.id.mName)
@@ -43,6 +43,7 @@ class JobAlleyMainActivity : AppCompatActivity() {
             if (!Conn!!.NotEmpty()) {
                 Log.i("DeleteRecords", "No records to clear")
                 Toast.makeText(this, "No records to clear", Toast.LENGTH_LONG).show()
+                return@setOnClickListener
             }
 
             if (Conn!!.DeleteRecords()) {

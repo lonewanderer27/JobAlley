@@ -13,7 +13,7 @@
         android:theme="@style/Theme.JobAlley"
         tools:targetApi="31">
         <activity
-            android:name=".JobAlleyEditRecord"
+            android:name=".JBEditRecord"
             android:exported="true" >
             <intent-filter>
                 <action android:name=".JobAlleyEditRecord" />
@@ -24,7 +24,7 @@
             android:name=".Records"
             android:exported="true" />
         <activity
-            android:name=".JobAlleyMainActivity"
+            android:name=".JBMainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

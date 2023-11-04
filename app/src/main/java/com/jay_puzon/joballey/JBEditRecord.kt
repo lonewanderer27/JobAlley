@@ -7,7 +7,7 @@ import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 
-class JobAlleyEditRecord : AppCompatActivity() {
+class JBEditRecord : AppCompatActivity() {
     private var FName: EditText? = null
     private var MName: EditText? = null
     private var LName: EditText? = null
@@ -18,7 +18,7 @@ class JobAlleyEditRecord : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_job_alley_edit_record)
+        setContentView(R.layout.jb_edit_record_activity)
 
         // retrieve the extra values
         val extras = intent.extras;

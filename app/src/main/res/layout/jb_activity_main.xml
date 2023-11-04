@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:padding="20dp"
     android:orientation="vertical"
-    tools:context=".JobAlleyMainActivity">
+    tools:context=".JBMainActivity">
     <EditText
         android:id="@+id/fName"
         android:textSize="20sp"
