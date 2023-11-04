@@ -61,12 +61,14 @@ class JobAlleyMainActivity : AppCompatActivity() {
         BtnAdd!!.setOnClickListener {
             Log.i("JobAlleyMainActivity", "BtnAdd clicked!")
 
+            // get the values from the edit text fields
             val names = listOf(
                 FName!!.text.toString() + "",
                 MName!!.text.toString() + "",
                 LName!!.text.toString() + ""
             )
 
+            // check if each field is filled up
             names.forEachIndexed { i, name ->
                 if (name == "") {
                     nameFields[i]!!.error = "Please fill up this field!"

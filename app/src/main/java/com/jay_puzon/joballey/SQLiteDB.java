@@ -7,11 +7,7 @@ import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.widget.ArrayAdapter;
-import android.widget.Toast;
-
 import androidx.annotation.Nullable;
-
 import java.util.ArrayList;
 
 public class SQLiteDB extends SQLiteOpenHelper {
@@ -131,7 +127,7 @@ public class SQLiteDB extends SQLiteOpenHelper {
         sql = "SELECT * FROM " + PROFILE;
         rs = conn.rawQuery(sql, null);
         rs.moveToFirst();
-        while (rs.isAfterLast() == false) {
+        while (!rs.isAfterLast()) {
             result += rs.getString(rs.getColumnIndex(PROF_FNAME)) + " " + rs.getString(rs.getColumnIndex(PROF_MNAME)) + " " + rs.getString(rs.getColumnIndex(PROF_LNAME));
             rs.moveToNext();
         }
@@ -146,13 +142,13 @@ public class SQLiteDB extends SQLiteOpenHelper {
     public ArrayList<String> GetRecords() {
         SQLiteDatabase conn = this.getReadableDatabase();
 
-        Items = new ArrayList();
-        ItemsId = new ArrayList();
+        Items = new ArrayList<>();
+        ItemsId = new ArrayList<>();
 
         rs = conn.rawQuery("SELECT * FROM " + PROFILE, null);
         rs.moveToFirst();
 
-        while (rs.isAfterLast() == false) {
+        while (!rs.isAfterLast()) {
             ItemsId.add(rs.getInt(rs.getColumnIndex(PROF_ID)));
                     Items.add(
                             rs.getString(rs.getColumnIndex(PROF_ID)) + " " +

@@ -8,9 +8,7 @@ import android.widget.ArrayAdapter;
 import android.R.layout;
 import android.widget.ListView;
 import android.widget.Toast;
-
 import androidx.annotation.Nullable;
-
 import java.util.ArrayList;
 
 public class Records extends ListActivity {
@@ -23,7 +21,7 @@ public class Records extends ListActivity {
         ItemList = Conn.GetRecords();
 
         if (ItemList.size() > 0) {
-            setListAdapter(new ArrayAdapter(this, layout.simple_list_item_1, ItemList));
+            setListAdapter(new ArrayAdapter<>(this, layout.simple_list_item_1, ItemList));
         } else {
             Toast.makeText(this, "No Records Found!!!", Toast.LENGTH_LONG).show();
         }
@@ -44,17 +42,20 @@ public class Records extends ListActivity {
     @Override
     protected void onListItemClick(ListView l, View v, int position, long id){
         super.onListItemClick(l, v, position, id);
-//        Toast.makeText(this, String.valueOf(Conn.ItemsId.get(position)), Toast.LENGTH_LONG).show();
 
+        // Get the data of the selected record
         String[] recordData = Conn.GetRecord(Conn.ItemsId.get(position));
 
+        // Create an intent to call the next activity
         Intent CallEdit = new Intent(".JobAlleyEditRecord");
 
+        // Pass the data to the next activity
         CallEdit.putExtra(SQLiteDB.PROF_ID, Conn.ItemsId.get(position));
         CallEdit.putExtra(SQLiteDB.PROF_FNAME, recordData[0]);
         CallEdit.putExtra(SQLiteDB.PROF_MNAME, recordData[1]);
         CallEdit.putExtra(SQLiteDB.PROF_LNAME, recordData[2]);
 
+        // Call the next activity
         startActivity(CallEdit);
     }
 }

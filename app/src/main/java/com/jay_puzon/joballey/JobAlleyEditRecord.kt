@@ -23,9 +23,9 @@ class JobAlleyEditRecord : AppCompatActivity() {
         // retrieve the extra values
         val extras = intent.extras;
         val id = extras!!.getInt(SQLiteDB.PROF_ID);
-        val fName = extras!!.getString(SQLiteDB.PROF_FNAME);
-        val mName = extras!!.getString(SQLiteDB.PROF_MNAME);
-        val lName = extras!!.getString(SQLiteDB.PROF_LNAME);
+        val fName = extras.getString(SQLiteDB.PROF_FNAME);
+        val mName = extras.getString(SQLiteDB.PROF_MNAME);
+        val lName = extras.getString(SQLiteDB.PROF_LNAME);
 
         // set the values to the fields
         val fNameField = findViewById<EditText>(R.id.fName);
@@ -54,6 +54,7 @@ class JobAlleyEditRecord : AppCompatActivity() {
         }
 
         BtnDelete!!.setOnClickListener {
+            // delete the entry in db, check if it's successful
             if (Conn!!.DeleteRecord(id)) {
                 Log.i("BtnEdit", "Record deleted!");
                 Toast.makeText(this, "Record deleted!", Toast.LENGTH_SHORT).show()
@@ -67,6 +68,7 @@ class JobAlleyEditRecord : AppCompatActivity() {
         BtnUpdate!!.setOnClickListener {
             Log.i("JobAlleyEditRecord", "BtnEdit clicked!")
 
+            // get the values from the edit text fields
             val names = listOf(
                 FName!!.text.toString() + "",
                 MName!!.text.toString() + "",
