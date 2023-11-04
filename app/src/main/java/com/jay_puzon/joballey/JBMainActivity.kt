@@ -88,23 +88,23 @@ class JBMainActivity : AppCompatActivity() {
 
             // check if there's existing record, if there is, don't add
             if (Conn!!.RecordExists(names[0], names[1], names[2])) {
-                Log.i("AddRecord", "RECORD ALREADY EXISTS!");
-                Toast.makeText(this, "Record already exists", Toast.LENGTH_LONG).show()
+                Log.i("AddRecord", "Record already exists");
+                Toast.makeText(this, "Record already exists", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener;
             }
 
             // check if adding the record was successful
             if (Conn!!.AddRecord(names[0], names[1], names[2])) {
                 Log.i("AddRecord", "Record saved!");
-                Toast.makeText(this, "Record saved!", Toast.LENGTH_LONG).show()
+                Toast.makeText(this, "Record saved!", Toast.LENGTH_SHORT).show()
 
                 // clear all edit text fields
                 nameFields.forEach { editText ->
                     editText!!.setText("")
                 }
             } else {
-                Log.e("AddRecord", "ERROR ON SAVING RECORD!");
-                Toast.makeText(this, "ERROR ON SAVING RECORD!", Toast.LENGTH_LONG).show()
+                Log.e("AddRecord", "Error saving record!");
+                Toast.makeText(this, "Error saving record!", Toast.LENGTH_SHORT).show()
             }
         }
     }
